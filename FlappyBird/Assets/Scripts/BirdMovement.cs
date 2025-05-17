@@ -4,13 +4,14 @@ using UnityEngine.InputSystem;
 
 public class BirdMovement : MonoBehaviour
 {
-    [SerializeField] private float JumpSpeed;
-    private Rigidbody2D rb2d;
+    [SerializeField] private float jumpSpeed;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameObject deathScreen;
+    private Rigidbody2D rb2d;
 
     private void Start()
     {
-        Time.timeScale = 1f;
+        deathScreen.SetActive(false);
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -18,7 +19,7 @@ public class BirdMovement : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            rb2d.linearVelocity = Vector2.up * JumpSpeed;
+            rb2d.linearVelocity = Vector2.up * jumpSpeed;
         }
     }
 
@@ -27,6 +28,7 @@ public class BirdMovement : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle")
         {
             Time.timeScale = 0f;
+            deathScreen.SetActive(true);
         }
     }
 
