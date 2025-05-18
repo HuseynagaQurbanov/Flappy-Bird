@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Scoring
+  - HighLimit
   layers:
   - Default
   - TransparentFX
