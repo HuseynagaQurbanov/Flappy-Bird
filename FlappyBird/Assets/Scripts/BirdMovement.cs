@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,17 +14,17 @@ public class BirdMovement : MonoBehaviour
     [SerializeField] private float rotationUpSpeedValue;
     private Rigidbody2D rb2d;
     private bool canJump = true;
+    public static bool isBirdAlive = true;
 
     private void Start()
     {
-        deathScreen.SetActive(false);
         rb2d = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         transform.Rotate(rotationSpeed * Time.deltaTime);
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (IsJumpInputReceived())
         {
             if (canJump)
                 Jump();
@@ -40,22 +40,23 @@ public class BirdMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            Time.timeScale = 0f;
-            deathScreen.SetActive(true);
+            isBirdAlive = false;
             hitSFX.Play();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Scoring")
+        switch (collision.gameObject.tag)
         {
-            gameManager.IncreaseScore();
-            pointSFX.Play();
+            case "Obstacle":
+                gameManager.IncreaseScore();
+                pointSFX.Play();
+                break;
+            case "HighLimit":
+                canJump = false;
+                break;
         }
-        
-        if (collision.gameObject.tag == "HighLimit")
-            canJump = false;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -67,5 +68,14 @@ public class BirdMovement : MonoBehaviour
     private void Jump()
     {
         rb2d.linearVelocity = Vector2.up * jumpSpeed;
+    }
+
+    bool IsJumpInputReceived()
+    {
+        bool mousePressed = Input.GetMouseButtonDown(0);
+
+        bool touchPressed = Input.touchCount > 0 && Input.GetTouch(0).phase == UnityEngine.TouchPhase.Began;
+
+        return mousePressed || touchPressed;
     }
 }

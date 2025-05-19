@@ -290,7 +290,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 7
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360e662a00e3b6a4eb9a98567e105495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpSpeed: 16
+  jumpSpeed: 11
   gameManager: {fileID: 511086023}
   deathScreen: {fileID: 1809179033}
   hitSFX: {fileID: 268792775}
@@ -1053,6 +1053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 686959629}
   highScoreText: {fileID: 1358609367}
+  deadScreen: {fileID: 1809179033}
 --- !u!4 &511086024
 Transform:
   m_ObjectHideFlags: 0
@@ -1107,7 +1108,7 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
@@ -1129,7 +1130,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 7.997155
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1137,7 +1138,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 0
+  m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
