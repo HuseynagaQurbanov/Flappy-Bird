@@ -49,7 +49,7 @@ public class BirdMovement : MonoBehaviour
     {
         switch (collision.gameObject.tag)
         {
-            case "Obstacle":
+            case "Scoring":
                 gameManager.IncreaseScore();
                 pointSFX.Play();
                 break;
